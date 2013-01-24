@@ -61,8 +61,8 @@ TestApp::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-
-  config.force_ssl = true
+ config.assets.debug = true
+  
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
