@@ -11,10 +11,9 @@
 
 class User < ActiveRecord::Base
 
-	  acts_as_gmappable
-
 	  attr_accessible :name, :email, :password, :password_confirmation
 	  has_secure_password
+	  has_many :microposts, dependent: :destroy
 
 	  before_save { |user| user.email = email.downcase }
   	  before_save :create_remember_token
@@ -27,12 +26,13 @@ class User < ActiveRecord::Base
 	  validates :password, presence: true, length: { minimum: 6 }
 	  validates :password_confirmation, presence: true
 
-	  def gmaps4rails_address
-		#describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
- 		 "#{self.street}, #{self.city}, #{self.country}" 
-	  end
-	 
+	  #default_scope order: 'microposts.created_at DESC'
 
+		def feed
+    		# This is preliminary. See "Following users" for the full implementation.
+    		Micropost.where("user_id = ?", id)
+  		end
+  		
 	  private
 
     	def create_remember_token
