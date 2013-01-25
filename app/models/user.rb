@@ -11,6 +11,8 @@
 
 class User < ActiveRecord::Base
 
+	  acts_as_gmappable
+
 	  attr_accessible :name, :email, :password, :password_confirmation
 	  has_secure_password
 
@@ -24,6 +26,11 @@ class User < ActiveRecord::Base
 	                    uniqueness: { case_sensitive: false }
 	  validates :password, presence: true, length: { minimum: 6 }
 	  validates :password_confirmation, presence: true
+
+	  def gmaps4rails_address
+		#describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
+ 		 "#{self.street}, #{self.city}, #{self.country}" 
+	  end
 	 
 
 	  private
