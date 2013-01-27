@@ -1,0 +1,66 @@
+<% provide(:title,"Maps") %>
+
+<html>
+<head>
+<script
+src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
+</script>
+
+<script>
+var locations = new Array();
+	
+	<% @user.each do |user| %>
+	locations.push(['<%= user.name %>',<%= user.latitude %>, <%= user.longitude %>]);
+	<% end %>
+function initialize()
+{
+	var center = new google.maps.LatLng(51.508742,-0.120850);
+	if (navigator.geolocation)
+    {
+	    navigator.geolocation.getCurrentPosition(function(position){
+	    	console.log(position.coords.latitude);
+	    	center = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+	    	showMarkers(center);
+	    });
+    }
+    else
+    	showMarkers(center);
+    console.log(center);
+
+
+}
+
+function showMarkers(center){
+	var mapProp = {
+	  center:center,
+	  zoom:5,
+	  mapTypeId:google.maps.MapTypeId.ROADMAP
+	};
+	var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	console.log(mapProp.center);
+	var marker ,i;
+	 var infowindow = new google.maps.InfoWindow();
+	for (i = 0; i < locations.length; i++) {  
+	      marker = new google.maps.Marker({
+	        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+	        map: map
+	      });
+	google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	        return function() {
+	          infowindow.setContent(locations[i][0]);
+	          infowindow.open(map, marker);
+	        }
+	      })(marker, i));
+	}
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+
+<body>
+<div id="googleMap" style="width:500px;height:380px;"></div>
+
+
+</body>
+</html>

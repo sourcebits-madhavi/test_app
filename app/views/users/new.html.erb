@@ -20,7 +20,35 @@
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
 
+      <%= f.label :location, "Location" %>
+      <%= f.text_field :location %>
+
+      <%= f.label :latitude %>
+      <%= f.text_field :latitude %>
+
+      <%= f.label :longitude %>
+      <%= f.text_field :longitude %>
+
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>
+
+      <button onclick="getLocation()">Get my Location</button> <br/><br/>
+
   </div>
 </div>
+
+<script>
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+function showPosition(position)
+  {
+    document.getElementById("user_latitude").value = position.coords.latitude;
+    document.getElementById("user_longitude").value = position.coords.longitude;
+  }
+</script>

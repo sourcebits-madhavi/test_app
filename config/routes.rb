@@ -1,4 +1,8 @@
 TestApp::Application.routes.draw do
+
+ resources :locations
+  get "rails/s"
+
   #get "users/new"
 
   root to: 'static_pages#home'
@@ -6,6 +10,9 @@ TestApp::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+  match '/news', to: 'static_pages#news'
+  match '/madhumaps', to: 'locations#index'
+  match '/maps', to: 'users#maps'
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete

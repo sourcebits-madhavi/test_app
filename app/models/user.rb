@@ -11,7 +11,9 @@
 
 class User < ActiveRecord::Base
 
-	  attr_accessible :name, :email, :password, :password_confirmation
+	 
+
+	  attr_accessible :name, :email, :password, :password_confirmation, :location, :latitude, :longitude
 	  has_secure_password
 	  has_many :microposts, dependent: :destroy
 
@@ -32,6 +34,8 @@ class User < ActiveRecord::Base
     		# This is preliminary. See "Following users" for the full implementation.
     		Micropost.where("user_id = ?", id)
   		end
+
+  		
   		
 	  private
 
