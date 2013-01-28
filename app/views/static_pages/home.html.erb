@@ -5,6 +5,9 @@
         <%= render 'shared/user_info' %>
       </section>
       <section>
+        <%= render :partial =>'shared/stats' , :collection => @user %>
+      </section>
+      <section>
         <%= render :partial => 'shared/micropost_form', :collection => @micropost %>
       </section>
 
