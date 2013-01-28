@@ -9,10 +9,7 @@
 //
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
-// This file is automatically included by javascript_include_tag :defaults
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
-//= require_tree .
 

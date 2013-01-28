@@ -1,8 +1,5 @@
 TestApp::Application.routes.draw do
 
- resources :locations
-  get "rails/s"
-
   #get "users/new"
 
   root to: 'static_pages#home'
