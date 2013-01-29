@@ -49,13 +49,23 @@ before_filter :admin_user,     only: :destroy
   def create
 
     @user = User.new(params[:user])
-    if @user.save
-      sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
-    else
-      render 'new'
-    end
+
+    
+      if @user.save
+
+        UserMailer.welcome_email(@user).deliver
+        #respond_to do |format|
+            # format.html { render :template => "users/confirmation" }
+        #end
+       # format.html { redirect_to(@user, :notice => 'User was successfully created.') }
+        sign_in @user
+        flash[:success] = "Welcome to the Sample App!"
+        redirect_to @user
+      else
+        #format.html { render :action => "new" }
+        render 'new'
+      end
+    
     
   end
 

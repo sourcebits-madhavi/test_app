@@ -3,6 +3,8 @@
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
+$greenLight: #D8F781;
+
 
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
@@ -17,6 +19,7 @@ html {
 }
 
 body {
+  background-color: #F6D8CE;
   padding-top: 60px;
 }
 
@@ -69,7 +72,7 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: white;
+  color: #D8F781;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
@@ -86,7 +89,7 @@ p {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid $grayMediumLight;
+  border-top: 1px solid $greenLight;
   color: $grayLight;
   a {
     color: $gray;
@@ -94,6 +97,7 @@ footer {
       color: $grayDarker;
     }
   }  
+
   small { 
     float: left; 
   }
