@@ -1,7 +1,15 @@
 TestApp::Application.routes.draw do
 
-  #get "users/new"
+  get "slams/create"
 
+  post "slams/new"
+
+  get "slams/index"
+
+  get "slams/show"
+
+  #get "users/new"
+  
   root to: 'static_pages#home'
   
   match '/help',    to: 'static_pages#help'
@@ -9,7 +17,6 @@ TestApp::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
   match '/news', to: 'static_pages#news'
   match '/maps', to: 'users#maps'
-  match '/slam',  to: 'slam#slam'
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
@@ -19,6 +26,7 @@ TestApp::Application.routes.draw do
       get :following, :followers
     end
   end
+
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]

@@ -43,7 +43,6 @@ before_filter :admin_user,     only: :destroy
 	 @user = User.find(params[:id])
    @microposts = @user.microposts.all
 
-
   end
 
   def create
